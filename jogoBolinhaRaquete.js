@@ -7,7 +7,7 @@ let xBolinha = comprimentoTela/2;
 let yBolinha = alturaTela/2;
 
 //Velocidade da bolinha
-const velocidadeBolinha = 3;
+const velocidadeBolinha = 10;
 let velocidadeBolinhaX = velocidadeBolinha;
 let velocidadeBolinhaY = velocidadeBolinha;
 
@@ -76,10 +76,10 @@ function colidirRaquete2(){
 }
 
 function mostraPlacar(){
-  if (xBolinha > comprimentoTela - 5){
+  if (xBolinha > comprimentoTela - 1){
     pontosJogador1 +=1;
   }
-  if (xBolinha < 5){
+  if (xBolinha < 1){
     pontosJogador2 +=1;
   }
   fill(255);
