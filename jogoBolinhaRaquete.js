@@ -80,7 +80,7 @@ function mostraPlacar(){
     pontosJogador1 +=1;
   }
   if (xBolinha < 5){
-    pontosJogador2 +=1
+    pontosJogador2 +=1;
   }
   fill(255);
   textSize(20);
