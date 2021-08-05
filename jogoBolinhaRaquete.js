@@ -52,15 +52,18 @@ function draw() { //porta de entrada do programa
   colidirBordas();
   movimentaRaquete1();
   movimentaRaquete2();
+  colidirRaquete1();
+  colidirRaquete2();
   text(yRaquete1, 300,200);
   
 }
   
 function colidirRaquete1(){
-  
-  if(colidiuRaqueteBolinha == true){
-  //colideRectCircle (posX do retangulo, posY do retangulo, alturado retangulo, comprimentodoRetangulo, posX bolinha, posYbolinha, raio da bolinha)
+    //colideRectCircle (posX do retangulo, posY do retangulo, alturado retangulo, comprimentodoRetangulo, posX bolinha, posYbolinha, raio da bolinha)
   colidiuRaqueteBolinha = collideRectCircle(xRaquete1, yRaquete1, comprimentoRaquete, alturaRaquete, xBolinha, yBolinha, raio);
+  if(colidiuRaqueteBolinha == true){
+    velocidadeBolinhaX *=-1;
+    velocidadeBolinhaY *=-1;
   }
 }
   
@@ -68,6 +71,10 @@ function colidirRaquete1(){
 function colidirRaquete2(){
   //colideRectCircle (posX do retangulo, posY do retangulo, alturado retangulo, comprimentodoRetangulo, posX bolinha, posYbolinha, raio da bolinha)
   colidiuRaqueteBolinha = collideRectCircle(xRaquete2, yRaquete2, comprimentoRaquete, alturaRaquete, xBolinha, yBolinha, raio);
+  if(colidiuRaqueteBolinha == true){
+  velocidadeBolinhaX *=-1;
+  velocidadeBolinhaY *=-1;
+  }
 
   
 }
@@ -110,11 +117,9 @@ function colidirBordas(){
     
   }
   
-function colidirRaquete(){
-  
 }
 
-
+function colidirRaquete(){
   
 }
 
