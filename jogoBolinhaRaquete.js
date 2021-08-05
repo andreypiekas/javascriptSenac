@@ -33,12 +33,16 @@ let colidiuRaqueteBolinha = false;
 let posX = xBolinha;
 let posY = yBolinha;
 
+//Variaveis Jogadores
+let pontosJogador1 = 0;
+let pontosJogador2 = 0;
+
 function setup() {
   createCanvas(comprimentoTela, alturaTela);
 }
 
 function draw() { //porta de entrada do programa
-  background(127); 
+  background(0); 
   mostraBolinha();
   mostraRaquetes(xRaquete1, yRaquete1);  // Mostrar a raquete1
   mostraRaquetes(xRaquete2, yRaquete2);  // Mostrar a raquete2
@@ -48,7 +52,8 @@ function draw() { //porta de entrada do programa
   movimentaRaquete2();
   colidirRaquete1();
   colidirRaquete2();
-  text(yRaquete1, 300,200);
+  //text(yRaquete1, 300,200);
+  mostraPlacar();
   
 }
   
@@ -57,7 +62,7 @@ function colidirRaquete1(){
   colidiuRaqueteBolinha = collideRectCircle(xRaquete1, yRaquete1, comprimentoRaquete, alturaRaquete, xBolinha, yBolinha, raio);
   if(colidiuRaqueteBolinha == true){
     velocidadeBolinhaX *=-1;
-    velocidadeBolinhaY *=-1;
+    //velocidadeBolinhaY *=-1;
   }
 }
 
@@ -66,12 +71,21 @@ function colidirRaquete2(){
   colidiuRaqueteBolinha = collideRectCircle(xRaquete2, yRaquete2, comprimentoRaquete, alturaRaquete, xBolinha, yBolinha, raio);
   if(colidiuRaqueteBolinha == true){
   velocidadeBolinhaX *=-1;
-  velocidadeBolinhaY *=-1;
+  //velocidadeBolinhaY *=-1;
   }  
 }
 
-function mudaDirecaoY(){
-  velocidadeBolinhaY *=-1;
+function mostraPlacar(){
+  if (xBolinha > comprimentoTela - 5){
+    pontosJogador1 +=1;
+  }
+  if (xBolinha < 5){
+    pontosJogador2 +=1
+  }
+  fill(255);
+  textSize(20);
+  text(pontosJogador1, 278, 26);
+  text(pontosJogador2, 320, 26);
   
 }
 
@@ -81,9 +95,7 @@ function mostraBolinha(){
 }
 
 function mostraRaquetes(posX, posY){
-  rect(posX, posY, comprimentoRaquete, alturaRaquete);
- // rect(comprimentoTela-comprimentoRaquete, yRaquetes, comprimentoRaquete, alturaRaquete); 
-  
+  rect(posX, posY, comprimentoRaquete, alturaRaquete); 
 }
 
 function movimentaBolinha(){
@@ -102,26 +114,26 @@ function colidirBordas(){
     
   }
 }
-
-function movimentaRaquete1(){
-  if((keyIsDown(87)) && (yRaquete1 >0)){ // 87 codigo da tecla W - http://keycode.info
+// Relacionado as funcoes movimentaRaque1 e movimentaRaquete2, codigos de teclas
+// 87 - w | 83 - S | 38 - up | 40 - down *** http://keycode.info
+function movimentaRaquete1(){ 
+  if((keyIsDown(87)) && (yRaquete1 >0)){ 
     yRaquete1 -= velocidadeRaquetes;
     
   }
-  if((keyIsDown(83)) && (yRaquete1 < alturaTela - alturaRaquete)){ // 83 codigo da tecla S - http://keycode.info
+  if((keyIsDown(83)) && (yRaquete1 < alturaTela - alturaRaquete)){
   yRaquete1 += velocidadeRaquetes;
     
   } 
 }
 
 function movimentaRaquete2(){
-  if((keyIsDown(38)) && (yRaquete2 >0)){ // 38 codigo da tecla Up - http://keycode.info
+  if((keyIsDown(38)) && (yRaquete2 >0)){ 
   yRaquete2 -= velocidadeRaquetes;
 
   }
-  if((keyIsDown(40)) && (yRaquete2 < alturaTela - alturaRaquete)){ // 40 codigo da tecla Down - http://keycode.info
+  if((keyIsDown(40)) && (yRaquete2 < alturaTela - alturaRaquete)){ 
   yRaquete2 += velocidadeRaquetes;
 
   }
-
 }
